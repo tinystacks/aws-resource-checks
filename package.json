@@ -1,6 +1,6 @@
 {
   "name": "@tinystacks/aws-resource-tests",
-  "version": "0.0.0",
+  "version": "0.0.1-local.0",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -42,7 +42,6 @@
   "homepage": "https://github.com/tinystacks/aws-resource-tests#readme",
   "devDependencies": {
     "@tinystacks/iac-utils": "^0.0.14-local.30",
-    "@types/cached": "^6.0.0",
     "@types/jest": "^28.1.7",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.isnil": "^4.0.7",
@@ -65,8 +64,12 @@
     "@aws-sdk/client-ec2": "^3.252.0",
     "@aws-sdk/client-s3": "^3.252.0",
     "@aws-sdk/client-service-quotas": "^3.252.0",
+    "@aws-sdk/client-sqs": "^3.252.0",
     "@aws-sdk/credential-providers": "^3.252.0",
+    "lodash.get": "^4.4.2",
     "lodash.isempty": "^4.4.0",
+    "lodash.isnil": "^4.0.0",
+    "lodash.isplainobject": "^4.0.6",
     "lodash.isstring": "^4.0.1"
   }
 }
