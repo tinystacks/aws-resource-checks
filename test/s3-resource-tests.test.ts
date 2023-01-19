@@ -31,11 +31,6 @@ jest.mock('@aws-sdk/client-s3', () => ({
   S3: mockS3
 }));
 
-jest.mock('@aws-sdk/client-service-quotas', () => ({
-  __esModule: true,
-  ServiceQuotas: mockServiceQuotas
-}));
-
 import {
   ChangeType,
   IacFormat,

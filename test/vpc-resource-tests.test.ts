@@ -28,16 +28,6 @@ jest.mock('../src/utils/aws', () => ({
   getCredentials: mockGetCredentials
 }));
 
-jest.mock('@aws-sdk/client-ec2', () => ({
-  __esModule: true,
-  EC2: mockEc2
-}));
-
-jest.mock('@aws-sdk/client-service-quotas', () => ({
-  __esModule: true,
-  ServiceQuotas: mockServiceQuotas
-}));
-
 import {
   ChangeType,
   IacFormat,
