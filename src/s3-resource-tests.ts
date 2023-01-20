@@ -30,12 +30,12 @@ async function validateBucketNameIsUnique (bucketName: string) {
   }
 }
 
-async function s3BucketSmokeTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: SmokeTestOptions) {
+async function s3BucketResourceTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: SmokeTestOptions) {
   if (resource.changeType === ChangeType.CREATE) {
     if (resource.properties?.Name) await validateBucketNameIsUnique(resource.properties?.Name);
   }
 }
 
 export {
-  s3BucketSmokeTest
+  s3BucketResourceTest
 };

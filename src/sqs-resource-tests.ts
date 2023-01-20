@@ -20,12 +20,12 @@ async function validateQueueNameIsUnique (queueName: string): Promise<void | nev
   if (QueueUrls.some(url => url.endsWith(`/${queueName}`))) throw new ConflictError(`An SQS queue with name ${queueName} already exists!`);
 }
 
-async function sqsQueueSmokeTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: SmokeTestOptions): Promise<void | never> {
+async function sqsQueueResourceTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: SmokeTestOptions): Promise<void | never> {
   if (resource.changeType === ChangeType.CREATE) {
     await validateQueueNameIsUnique(resource.properties.QueueName);
   }
 }
 
 export {
-  sqsQueueSmokeTest
+  sqsQueueResourceTest
 };

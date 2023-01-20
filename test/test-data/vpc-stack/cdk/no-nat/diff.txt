@@ -1,4 +1,4 @@
-Stack SmokeTestApp
+Stack ResourceTestApp
 
 Parameters
 

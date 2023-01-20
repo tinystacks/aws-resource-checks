@@ -72,12 +72,12 @@ async function verifyVpcHasPrivateSubnets (resource: ResourceDiffRecord, allReso
   }
 }
 
-async function vpcSmokeTest (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) {
+async function vpcResourceTest (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) {
   if (config.requirePrivateSubnet) {
     await verifyVpcHasPrivateSubnets(resource, allResources);
   }
 }
 
 export {
-  vpcSmokeTest
+  vpcResourceTest
 };

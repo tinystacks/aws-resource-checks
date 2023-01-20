@@ -1,5 +1,5 @@
 import {
-  ResourceTester,
+  ResourceChecks,
   ResourceDiffRecord,
   SmokeTestOptions,
   SQS_QUEUE,
@@ -8,25 +8,25 @@ import {
   VPC
 } from '@tinystacks/predeploy-infra';
 import {
-  s3BucketSmokeTest
+  s3BucketResourceTest
 } from './s3-resource-tests';
 import {
-  sqsQueueSmokeTest
+  sqsQueueResourceTest
 } from './sqs-resource-tests';
 import {
-  vpcSmokeTest
+  vpcResourceTest
 } from './vpc-resource-tests';
 
-class TinyStacksAwsResourceTester extends ResourceTester {
+class TinyStacksAwsResourceChecks extends ResourceChecks {
   resourceTests: {
     [key: string]: (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) => Promise<void>
   } = {
-      [SQS_QUEUE]: sqsQueueSmokeTest,
-      [S3_BUCKET]: s3BucketSmokeTest,
-      [VPC]: vpcSmokeTest
+      [SQS_QUEUE]: sqsQueueResourceTest,
+      [S3_BUCKET]: s3BucketResourceTest,
+      [VPC]: vpcResourceTest
     };
 
-  async testResource (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) {
+  async checkResource (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) {
     const resourceType = getStandardResourceType(resource.resourceType);
     const resourceTest = this.resourceTests[resourceType];
     if (resourceTest) return await resourceTest(resource, allResources, config);
@@ -35,6 +35,6 @@ class TinyStacksAwsResourceTester extends ResourceTester {
 
 
 export {
-  TinyStacksAwsResourceTester
+  TinyStacksAwsResourceChecks
 };
-export default TinyStacksAwsResourceTester;
+export default TinyStacksAwsResourceChecks;

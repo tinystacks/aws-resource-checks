@@ -34,7 +34,7 @@ import {
   ResourceDiffRecord
 } from '@tinystacks/predeploy-infra';
 import {
-  vpcSmokeTest
+  vpcResourceTest
 } from '../src/vpc-resource-tests';
 
 describe('vpc smoke tests', () => {
@@ -54,7 +54,7 @@ describe('vpc smoke tests', () => {
     jest.restoreAllMocks();
   });
 
-  describe('vpcSmokeTest', () => {
+  describe('vpcResourceTest', () => {
     it('does nothing if requirePrivateSubnet is undefined', async () => {
       const mockVpc: ResourceDiffRecord = {
         'format': IacFormat.tf,
@@ -72,7 +72,7 @@ describe('vpc smoke tests', () => {
 
       let thrownError;
       try {
-        await vpcSmokeTest(mockVpc, allResources, {});
+        await vpcResourceTest(mockVpc, allResources, {});
       } catch (error) {
         thrownError = error;
       } finally {
@@ -82,7 +82,7 @@ describe('vpc smoke tests', () => {
     });
     it('does nothing if requirePrivateSubnet is false', async () => {
       const mockVpc: ResourceDiffRecord = {
-        'stackName': 'SmokeTestApp',
+        'stackName': 'ResourceTestApp',
         'format': IacFormat.awsCdk,
         'changeType': ChangeType.CREATE,
         'resourceType': 'AWS::EC2::VPC',
@@ -94,7 +94,7 @@ describe('vpc smoke tests', () => {
           'tagSet': [
             {
               'Key': 'Name',
-              'Value': 'SmokeTestApp/Vpc/Vpc'
+              'Value': 'ResourceTestApp/Vpc/Vpc'
             }
           ]
         }
@@ -103,7 +103,7 @@ describe('vpc smoke tests', () => {
 
       let thrownError;
       try {
-        await vpcSmokeTest(mockVpc, allResources, { requirePrivateSubnet: false });
+        await vpcResourceTest(mockVpc, allResources, { requirePrivateSubnet: false });
       } catch (error) {
         thrownError = error;
       } finally {
@@ -113,7 +113,7 @@ describe('vpc smoke tests', () => {
     });
     it('validates the route table for the private subnet has a route pointing to a NAT gateway', async () => {
       const mockVpc = {
-        'stackName': 'SmokeTestApp',
+        'stackName': 'ResourceTestApp',
         'format': 'aws-cdk',
         'changeType': 'CREATE',
         'resourceType': 'AWS::EC2::VPC',
@@ -125,7 +125,7 @@ describe('vpc smoke tests', () => {
           'tagSet': [
             {
               'Key': 'Name',
-              'Value': 'SmokeTestApp/Vpc/Vpc'
+              'Value': 'ResourceTestApp/Vpc/Vpc'
             }
           ]
         }
@@ -134,7 +134,7 @@ describe('vpc smoke tests', () => {
 
       let thrownError;
       try {
-        await vpcSmokeTest(mockVpc, allResources, { requirePrivateSubnet: true });
+        await vpcResourceTest(mockVpc, allResources, { requirePrivateSubnet: true });
       } catch (error) {
         thrownError = error;
       } finally {
@@ -145,7 +145,7 @@ describe('vpc smoke tests', () => {
     });
     it('throws if there is not a subnet with a route pointing to a NAT gateway', async () => {
       const mockVpc: ResourceDiffRecord = {
-        'stackName': 'SmokeTestApp',
+        'stackName': 'ResourceTestApp',
         'format': IacFormat.awsCdk,
         'changeType': ChangeType.CREATE,
         'resourceType': 'AWS::EC2::VPC',
@@ -157,7 +157,7 @@ describe('vpc smoke tests', () => {
           'tagSet': [
             {
               'Key': 'Name',
-              'Value': 'SmokeTestApp/Vpc/Vpc'
+              'Value': 'ResourceTestApp/Vpc/Vpc'
             }
           ]
         }
@@ -166,7 +166,7 @@ describe('vpc smoke tests', () => {
 
       let thrownError;
       try {
-        await vpcSmokeTest(mockVpc, allResources, { requirePrivateSubnet: true });
+        await vpcResourceTest(mockVpc, allResources, { requirePrivateSubnet: true });
       } catch (error) {
         thrownError = error;
       } finally {

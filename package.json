@@ -1,6 +1,6 @@
 {
   "name": "@tinystacks/aws-resource-checks",
-  "version": "0.0.1-local.1",
+  "version": "0.0.1-local.3",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/tinystacks/aws-resource-checks#readme",
   "devDependencies": {
-    "@tinystacks/predeploy-infra": "^1.0.1-local.1",
+    "@tinystacks/predeploy-infra": "^1.0.1-local.5",
     "@types/jest": "^28.1.7",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.isnil": "^4.0.7",

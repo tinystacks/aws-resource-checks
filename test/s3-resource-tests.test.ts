@@ -37,7 +37,7 @@ import {
   ResourceDiffRecord
 } from '@tinystacks/predeploy-infra';
 import {
-  s3BucketSmokeTest
+  s3BucketResourceTest
 } from '../src/s3-resource-tests';
 
 describe('s3 smoke tests', () => {
@@ -58,13 +58,13 @@ describe('s3 smoke tests', () => {
     jest.restoreAllMocks();
   });
 
-  describe('s3BucketSmokeTest', () => {
+  describe('s3BucketResourceTest', () => {
     it('does nothing if change type is not create', async () => {
       const resource = {
         changeType: ChangeType.UPDATE
       } as ResourceDiffRecord;
 
-      await s3BucketSmokeTest(resource, [resource]);
+      await s3BucketResourceTest(resource, [resource]);
 
       expect(mockLoggerInfo).not.toBeCalled();
       expect(mockGetCredentials).not.toBeCalled();
@@ -84,7 +84,7 @@ describe('s3 smoke tests', () => {
 
       let thrownError;
       try {
-        await s3BucketSmokeTest(resource, [resource]);
+        await s3BucketResourceTest(resource, [resource]);
       } catch (error) {
         thrownError = error;
       } finally {
@@ -120,7 +120,7 @@ describe('s3 smoke tests', () => {
 
       let thrownError;
       try {
-        await s3BucketSmokeTest(resource, [resource]);
+        await s3BucketResourceTest(resource, [resource]);
       } catch (error) {
         thrownError = error;
       } finally {
@@ -145,7 +145,7 @@ describe('s3 smoke tests', () => {
         properties: {}
       } as unknown as ResourceDiffRecord;
 
-      await s3BucketSmokeTest(resource, [resource]);
+      await s3BucketResourceTest(resource, [resource]);
 
       expect(mockLoggerInfo).not.toBeCalled();
       expect(mockGetCredentials).not.toBeCalled();
@@ -169,7 +169,7 @@ describe('s3 smoke tests', () => {
 
       let thrownError;
       try {
-        await s3BucketSmokeTest(resource, [resource]);
+        await s3BucketResourceTest(resource, [resource]);
       } catch (error) {
         thrownError = error;
       } finally {

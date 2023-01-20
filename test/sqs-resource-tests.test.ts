@@ -32,7 +32,7 @@ import {
   ChangeType, ResourceDiffRecord
 } from '@tinystacks/predeploy-infra';
 import {
-  sqsQueueSmokeTest
+  sqsQueueResourceTest
 } from '../src/sqs-resource-tests';
 
 describe('sqs smoke tests', () => {
@@ -49,13 +49,13 @@ describe('sqs smoke tests', () => {
     jest.restoreAllMocks();
   });
 
-  describe('sqsQueueSmokeTest', () => {
+  describe('sqsQueueResourceTest', () => {
     it('does nothing if change type is not create', async () => {
       const resource = {
         changeType: ChangeType.UPDATE
       } as ResourceDiffRecord;
 
-      await sqsQueueSmokeTest(resource);
+      await sqsQueueResourceTest(resource);
 
       expect(mockLoggerInfo).not.toBeCalled();
       expect(mockGetCredentials).not.toBeCalled();
@@ -69,7 +69,7 @@ describe('sqs smoke tests', () => {
         }
       } as unknown as ResourceDiffRecord;
 
-      await sqsQueueSmokeTest(resource);
+      await sqsQueueResourceTest(resource);
 
       expect(mockLoggerInfo).toBeCalled();
       expect(mockLoggerInfo).toBeCalledWith('Checking if queue name mock-queue is unique...');
@@ -92,7 +92,7 @@ describe('sqs smoke tests', () => {
 
       let thrownError;
       try {
-        await sqsQueueSmokeTest(resource);
+        await sqsQueueResourceTest(resource);
       } catch (error) {
         thrownError = error;
       } finally {

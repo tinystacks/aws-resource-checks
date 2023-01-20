@@ -1,6 +1,6 @@
 [
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::VPC",
@@ -12,13 +12,13 @@
       "tagSet": [
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc"
+          "Value": "ResourceTestApp/Vpc/Vpc"
         }
       ]
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::Subnet",
@@ -49,13 +49,13 @@
         },
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/PublicSubnetSubnet1"
+          "Value": "ResourceTestApp/Vpc/Vpc/PublicSubnetSubnet1"
         }
       ]
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::RouteTable",
@@ -83,7 +83,7 @@
       "tagSet": [
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/PublicSubnetSubnet1"
+          "Value": "ResourceTestApp/Vpc/Vpc/PublicSubnetSubnet1"
         }
       ],
       "vpcId": {
@@ -92,7 +92,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::SubnetRouteTableAssociation",
@@ -108,7 +108,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::Route",
@@ -122,7 +122,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::Subnet",
@@ -153,13 +153,13 @@
         },
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/PublicSubnetSubnet2"
+          "Value": "ResourceTestApp/Vpc/Vpc/PublicSubnetSubnet2"
         }
       ]
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::RouteTable",
@@ -187,7 +187,7 @@
       "tagSet": [
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/PublicSubnetSubnet2"
+          "Value": "ResourceTestApp/Vpc/Vpc/PublicSubnetSubnet2"
         }
       ],
       "vpcId": {
@@ -196,7 +196,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::SubnetRouteTableAssociation",
@@ -212,7 +212,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::Route",
@@ -226,7 +226,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::Subnet",
@@ -257,13 +257,13 @@
         },
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/IsolatedSubnetSubnet1"
+          "Value": "ResourceTestApp/Vpc/Vpc/IsolatedSubnetSubnet1"
         }
       ]
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::RouteTable",
@@ -284,7 +284,7 @@
       "tagSet": [
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/IsolatedSubnetSubnet1"
+          "Value": "ResourceTestApp/Vpc/Vpc/IsolatedSubnetSubnet1"
         }
       ],
       "vpcId": {
@@ -293,7 +293,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::SubnetRouteTableAssociation",
@@ -309,7 +309,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::Subnet",
@@ -340,13 +340,13 @@
         },
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/IsolatedSubnetSubnet2"
+          "Value": "ResourceTestApp/Vpc/Vpc/IsolatedSubnetSubnet2"
         }
       ]
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::RouteTable",
@@ -367,7 +367,7 @@
       "tagSet": [
         {
           "Key": "Name",
-          "Value": "SmokeTestApp/Vpc/Vpc/IsolatedSubnetSubnet2"
+          "Value": "ResourceTestApp/Vpc/Vpc/IsolatedSubnetSubnet2"
         }
       ],
       "vpcId": {
@@ -376,7 +376,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::SubnetRouteTableAssociation",
@@ -392,7 +392,7 @@
     }
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::InternetGateway",
@@ -401,7 +401,7 @@
     "properties": {}
   },
   {
-    "stackName": "SmokeTestApp",
+    "stackName": "ResourceTestApp",
     "format": "aws-cdk",
     "changeType": "CREATE",
     "resourceType": "AWS::EC2::VPCGatewayAttachment",
