@@ -1,1 +1,1 @@
-# aws-resource-tests
+# aws-resource-checks

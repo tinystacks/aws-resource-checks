@@ -1,5 +1,5 @@
 {
-  "name": "@tinystacks/aws-resource-tests",
+  "name": "@tinystacks/aws-resource-checks",
   "version": "0.0.1-local.1",
   "description": "",
   "main": "dist/index.js",
@@ -32,14 +32,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tinystacks/aws-resource-tests.git"
+    "url": "git+https://github.com/tinystacks/aws-resource-checks.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tinystacks/aws-resource-tests/issues"
+    "url": "https://github.com/tinystacks/aws-resource-checks/issues"
   },
-  "homepage": "https://github.com/tinystacks/aws-resource-tests#readme",
+  "homepage": "https://github.com/tinystacks/aws-resource-checks#readme",
   "devDependencies": {
     "@tinystacks/predeploy-infra": "^1.0.1-local.1",
     "@types/jest": "^28.1.7",
