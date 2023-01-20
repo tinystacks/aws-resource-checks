@@ -6,7 +6,7 @@ import {
   S3_BUCKET,
   getStandardResourceType,
   VPC
-} from '@tinystacks/iac-utils';
+} from '@tinystacks/predeploy-infra';
 import {
   s3BucketSmokeTest
 } from './s3-resource-tests';

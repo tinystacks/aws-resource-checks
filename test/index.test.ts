@@ -17,7 +17,7 @@ import {
   CloudformationTypes,
   TerraformTypes,
   ResourceDiffRecord
-} from '@tinystacks/iac-utils';
+} from '@tinystacks/predeploy-infra';
 
 const {
   CFN_S3_BUCKET,

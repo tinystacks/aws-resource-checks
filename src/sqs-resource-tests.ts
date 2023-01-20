@@ -5,7 +5,7 @@ import {
   ChangeType,
   ResourceDiffRecord,
   SmokeTestOptions
-} from '@tinystacks/iac-utils';
+} from '@tinystacks/predeploy-infra';
 import { getCredentials } from './utils/aws';
 
 async function validateQueueNameIsUnique (queueName: string): Promise<void | never> {

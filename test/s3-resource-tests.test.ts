@@ -6,8 +6,8 @@ const mockS3 = jest.fn();
 const mockGetAwsDefaultServiceQuota = jest.fn();
 const mockServiceQuotas = jest.fn();
 
-jest.mock('@tinystacks/iac-utils', () => {
-  const original = jest.requireActual('@tinystacks/iac-utils');
+jest.mock('@tinystacks/predeploy-infra', () => {
+  const original = jest.requireActual('@tinystacks/predeploy-infra');
   return {
     logger: {
       info: mockLoggerInfo
@@ -35,7 +35,7 @@ import {
   ChangeType,
   IacFormat,
   ResourceDiffRecord
-} from '@tinystacks/iac-utils';
+} from '@tinystacks/predeploy-infra';
 import {
   s3BucketSmokeTest
 } from '../src/s3-resource-tests';

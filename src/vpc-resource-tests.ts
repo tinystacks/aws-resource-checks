@@ -11,7 +11,7 @@ import {
   SUBNET,
   getStandardResourceType,
   CliError
-} from '@tinystacks/iac-utils';
+} from '@tinystacks/predeploy-infra';
 
 // eslint-disable-next-line no-shadow
 enum SubnetType {
