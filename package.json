@@ -28,7 +28,8 @@
     "test-cov": "jest --coverage",
     "test-file": "jest ./test/sqs-resource-tests.test.ts",
     "test-file-cov": "jest ./test/cli/commands/smoke-test/smoke-tests/aws/resource-tests/vpc-smoke-tests.test.ts --coverage",
-    "view-test-cov": "jest --coverage && open coverage/lcov-report/index.html"
+    "view-test-cov": "jest --coverage && open coverage/lcov-report/index.html",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -65,6 +66,7 @@
     "@aws-sdk/client-s3": "^3.252.0",
     "@aws-sdk/client-sqs": "^3.252.0",
     "@aws-sdk/credential-providers": "^3.252.0",
+    "husky": "^8.0.3",
     "lodash.get": "^4.4.2",
     "lodash.isnil": "^4.0.0",
     "lodash.isplainobject": "^4.0.6",
