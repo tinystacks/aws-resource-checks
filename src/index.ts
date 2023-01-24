@@ -1,12 +1,12 @@
 import {
   ResourceChecks,
   ResourceDiffRecord,
-  SmokeTestOptions,
+  CheckOptions,
   SQS_QUEUE,
   S3_BUCKET,
   getStandardResourceType,
   VPC
-} from '@tinystacks/predeploy-infra';
+} from '@tinystacks/precloud';
 import {
   s3BucketResourceTest
 } from './s3-resource-tests';
@@ -19,14 +19,14 @@ import {
 
 class TinyStacksAwsResourceChecks extends ResourceChecks {
   resourceTests: {
-    [key: string]: (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) => Promise<void>
+    [key: string]: (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: CheckOptions) => Promise<void>
   } = {
       [SQS_QUEUE]: sqsQueueResourceTest,
       [S3_BUCKET]: s3BucketResourceTest,
       [VPC]: vpcResourceTest
     };
 
-  async checkResource (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) {
+  async checkResource (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: CheckOptions) {
     const resourceType = getStandardResourceType(resource.resourceType);
     const resourceTest = this.resourceTests[resourceType];
     if (resourceTest) return await resourceTest(resource, allResources, config);

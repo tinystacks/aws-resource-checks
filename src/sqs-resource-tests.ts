@@ -4,8 +4,8 @@ import {
   ConflictError,
   ChangeType,
   ResourceDiffRecord,
-  SmokeTestOptions
-} from '@tinystacks/predeploy-infra';
+  CheckOptions
+} from '@tinystacks/precloud';
 import { getCredentials } from './utils/aws';
 
 async function validateQueueNameIsUnique (queueName: string): Promise<void | never> {
@@ -20,7 +20,7 @@ async function validateQueueNameIsUnique (queueName: string): Promise<void | nev
   if (QueueUrls.some(url => url.endsWith(`/${queueName}`))) throw new ConflictError(`An SQS queue with name ${queueName} already exists!`);
 }
 
-async function sqsQueueResourceTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: SmokeTestOptions): Promise<void | never> {
+async function sqsQueueResourceTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: CheckOptions): Promise<void | never> {
   if (resource.changeType === ChangeType.CREATE) {
     await validateQueueNameIsUnique(resource.properties.QueueName);
   }

@@ -4,8 +4,8 @@ import {
   ConflictError,
   ChangeType,
   ResourceDiffRecord,
-  SmokeTestOptions
-} from '@tinystacks/predeploy-infra';
+  CheckOptions
+} from '@tinystacks/precloud';
 import { getCredentials } from './utils/aws';
 
 async function validateBucketNameIsUnique (bucketName: string) {
@@ -30,7 +30,7 @@ async function validateBucketNameIsUnique (bucketName: string) {
   }
 }
 
-async function s3BucketResourceTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: SmokeTestOptions) {
+async function s3BucketResourceTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: CheckOptions) {
   if (resource.changeType === ChangeType.CREATE) {
     if (resource.properties?.Name) await validateBucketNameIsUnique(resource.properties?.Name);
   }
