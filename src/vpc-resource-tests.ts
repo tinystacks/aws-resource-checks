@@ -5,13 +5,13 @@ import isPlainObject from 'lodash.isplainobject';
 import {
   logger,
   ResourceDiffRecord,
-  SmokeTestOptions,
+  CheckOptions,
   Json,
   ROUTE_TABLE_ASSOCIATION,
   SUBNET,
   getStandardResourceType,
   CliError
-} from '@tinystacks/predeploy-infra';
+} from '@tinystacks/precloud';
 
 // eslint-disable-next-line no-shadow
 enum SubnetType {
@@ -72,7 +72,7 @@ async function verifyVpcHasPrivateSubnets (resource: ResourceDiffRecord, allReso
   }
 }
 
-async function vpcResourceTest (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: SmokeTestOptions) {
+async function vpcResourceTest (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], config: CheckOptions) {
   if (config.requirePrivateSubnet) {
     await verifyVpcHasPrivateSubnets(resource, allResources);
   }

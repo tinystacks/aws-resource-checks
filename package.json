@@ -1,6 +1,6 @@
 {
   "name": "@tinystacks/aws-resource-checks",
-  "version": "0.0.1-local.3",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -11,8 +11,8 @@
     "cleanup": "rm -rf dist || true && rm *.tgz || true",
     "clean-build": "npm ci && npm run cleanup && npm run build",
     "dependency-check": "./node_modules/.bin/depcheck",
-    "install-local-predeploy-infra": "npm i -D @tinystacks/predeploy-infra@local --@tinystacks:registry=http://local-npm-registry:4873",
-    "install-remote-predeploy-infra": "npm i -D @tinystacks/predeploy-infra@latest --@tinystacks:registry=https://registry.npmjs.org",
+    "install-local-precloud": "npm i -D @tinystacks/precloud@local --@tinystacks:registry=http://local-npm-registry:4873",
+    "install-remote-precloud": "npm i -D @tinystacks/precloud@latest --@tinystacks:registry=https://registry.npmjs.org",
     "lint": "./node_modules/.bin/eslint ./src",
     "lint-fix": "./node_modules/.bin/eslint --fix ./src",
     "lint-tests": "./node_modules/.bin/eslint --config .eslintrc.test.json ./test",
@@ -28,7 +28,8 @@
     "test-cov": "jest --coverage",
     "test-file": "jest ./test/sqs-resource-tests.test.ts",
     "test-file-cov": "jest ./test/cli/commands/smoke-test/smoke-tests/aws/resource-tests/vpc-smoke-tests.test.ts --coverage",
-    "view-test-cov": "jest --coverage && open coverage/lcov-report/index.html"
+    "view-test-cov": "jest --coverage && open coverage/lcov-report/index.html",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,7 @@
   },
   "homepage": "https://github.com/tinystacks/aws-resource-checks#readme",
   "devDependencies": {
-    "@tinystacks/predeploy-infra": "^1.0.1-local.5",
+    "@tinystacks/precloud": "^1.0.2",
     "@types/jest": "^28.1.7",
     "@types/lodash.get": "^4.4.7",
     "@types/lodash.isnil": "^4.0.7",
@@ -65,6 +66,7 @@
     "@aws-sdk/client-s3": "^3.252.0",
     "@aws-sdk/client-sqs": "^3.252.0",
     "@aws-sdk/credential-providers": "^3.252.0",
+    "husky": "^8.0.3",
     "lodash.get": "^4.4.2",
     "lodash.isnil": "^4.0.0",
     "lodash.isplainobject": "^4.0.6",

@@ -3,8 +3,8 @@ const mockGetCredentials = jest.fn();
 const mockListQueues = jest.fn();
 const mockSqs = jest.fn();
 
-jest.mock('@tinystacks/predeploy-infra', () => {
-  const original = jest.requireActual('@tinystacks/predeploy-infra');
+jest.mock('@tinystacks/precloud', () => {
+  const original = jest.requireActual('@tinystacks/precloud');
   return {
     logger: {
       info: mockLoggerInfo
@@ -30,7 +30,7 @@ jest.mock('@aws-sdk/client-sqs', () => ({
 
 import {
   ChangeType, ResourceDiffRecord
-} from '@tinystacks/predeploy-infra';
+} from '@tinystacks/precloud';
 import {
   sqsQueueResourceTest
 } from '../src/sqs-resource-tests';
