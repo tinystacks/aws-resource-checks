@@ -4,12 +4,35 @@ import {
   ConflictError,
   ChangeType,
   ResourceDiffRecord,
-  CheckOptions
+  CheckOptions,
+  getStandardResourceType,
+  S3_BUCKET
 } from '@tinystacks/precloud';
 import { getCredentials } from './utils/aws';
 
-async function validateBucketNameIsUnique (bucketName: string) {
+async function validateBucketNameIsUnique (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[]) {
+  const bucketName = resource.properties?.Name;
+  if (!bucketName) {
+    return;
+  }
   logger.info(`Checking if S3 bucket name ${bucketName} is unique...`);
+  const otherS3BucketsWithSameName = allResources.filter((res: ResourceDiffRecord) => (
+    getStandardResourceType(res.resourceType) === S3_BUCKET &&
+    res.logicalId !== resource.logicalId &&
+    res.properties?.Name === bucketName
+  ));
+
+  if (otherS3BucketsWithSameName.length > 0) {
+    throw new ConflictError(
+      'Multiple buckets with the same name found in template!',
+      'S3 bucket names must be unique.',
+      `Consider renaming one or more of the following resource: \n${JSON.stringify(
+        [...otherS3BucketsWithSameName, resource].map((res: ResourceDiffRecord) => res.logicalId),
+        null,
+        2
+      )}`);
+  }
+  
   const s3Client = new S3({
     credentials: await getCredentials()
   });
@@ -30,9 +53,9 @@ async function validateBucketNameIsUnique (bucketName: string) {
   }
 }
 
-async function s3BucketResourceTest (resource: ResourceDiffRecord, _allResources?: ResourceDiffRecord[], _config?: CheckOptions) {
+async function s3BucketResourceTest (resource: ResourceDiffRecord, allResources: ResourceDiffRecord[], _config?: CheckOptions) {
   if (resource.changeType === ChangeType.CREATE) {
-    if (resource.properties?.Name) await validateBucketNameIsUnique(resource.properties?.Name);
+    await validateBucketNameIsUnique(resource, allResources);
   }
 }
 

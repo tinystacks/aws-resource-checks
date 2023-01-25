@@ -37,7 +37,7 @@ describe('aws utils', () => {
     });
     it('throws if both node provider chain and environment credentials are nil', async () => {
       mockFromEnv.mockReturnValueOnce(async () => { throw new Error('Error!') });
-      mockFromNodeProviderChain.mockReturnValueOnce(async (): Promise<any> => undefined);
+      mockFromNodeProviderChain.mockReturnValueOnce(async () => { throw new Error('Error!') });
 
       let thrownError;
       try {

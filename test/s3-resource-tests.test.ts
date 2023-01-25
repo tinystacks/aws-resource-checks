@@ -71,7 +71,48 @@ describe('s3 predeploy checks', () => {
       expect(mockS3).not.toBeCalled();
       expect(mockHeadBucket).not.toBeCalled();
     });
-    it('throws a ConflictError if user already has a bucket with the same name', async () => {
+    it('throws a ConflictError if user has multiple buckets with the same name in their template', async () => {
+      const resource1 = {
+        changeType: ChangeType.CREATE,
+        format: IacFormat.awsCdk,
+        resourceType: 'AWS::S3::Bucket',
+        logicalId: 'bucket-1',
+        properties: {
+          Name: 'mock-bucket'
+        }
+      } as unknown as ResourceDiffRecord;
+      const resource2 = {
+        changeType: ChangeType.CREATE,
+        format: IacFormat.awsCdk,
+        resourceType: 'AWS::S3::Bucket',
+        logicalId: 'bucket-2',
+        properties: {
+          Name: 'mock-bucket'
+        }
+      } as unknown as ResourceDiffRecord;
+
+      let thrownError;
+      try {
+        await s3BucketResourceTest(resource1, [resource1, resource2]);
+      } catch (error) {
+        thrownError = error;
+      } finally {
+        expect(mockLoggerInfo).toBeCalled();
+        expect(mockLoggerInfo).toBeCalledWith('Checking if S3 bucket name mock-bucket is unique...');
+        expect(mockGetCredentials).not.toBeCalled();
+        expect(mockHeadBucket).not.toBeCalled();
+
+        expect(thrownError).not.toBeUndefined();
+        expect(thrownError).toHaveProperty('name', 'CliError');
+        expect(thrownError).toHaveProperty('message', 'Conflict!');
+        expect(thrownError).toHaveProperty('reason', 'Multiple buckets with the same name found in template!');
+        expect(thrownError).toHaveProperty('hints', [
+          'S3 bucket names must be unique.',
+          'Consider renaming one or more of the following resource: \n[\n  \"bucket-2\",\n  \"bucket-1\"\n]'
+        ]);
+      }
+    });
+    it('throws a ConflictError if user already has a bucket with the same name in their AWS environment', async () => {
       const resource = {
         changeType: ChangeType.CREATE,
         format: IacFormat.awsCdk,

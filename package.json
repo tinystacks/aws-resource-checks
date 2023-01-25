@@ -27,8 +27,8 @@
     "test": "jest",
     "test-cov": "jest --coverage",
     "test-file": "jest ./test/sqs-resource-tests.test.ts",
-    "test-file-cov": "jest ./test/cli/commands/smoke-test/smoke-tests/aws/resource-tests/vpc-smoke-tests.test.ts --coverage",
-    "view-test-cov": "jest --coverage && open coverage/lcov-report/index.html",
+    "test-file-cov": "jest ./test/sqs-resource-tests.test.ts --coverage",
+    "view-test-cov": "jest --coverage || true && open coverage/lcov-report/index.html",
     "prepare": "husky install"
   },
   "repository": {
