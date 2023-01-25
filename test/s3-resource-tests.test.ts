@@ -105,7 +105,7 @@ describe('s3 predeploy checks', () => {
         expect(thrownError).not.toBeUndefined();
         expect(thrownError).toHaveProperty('name', 'CliError');
         expect(thrownError).toHaveProperty('message', 'Conflict!');
-        expect(thrownError).toHaveProperty('reason', 'Multiple buckets with the same name found in template!');
+        expect(thrownError).toHaveProperty('reason', 'Multiple buckets with the same name ("mock-bucket") found in template!');
         expect(thrownError).toHaveProperty('hints', [
           'S3 bucket names must be unique.',
           'Consider renaming one or more of the following resource: \n[\n  \"bucket-2\",\n  \"bucket-1\"\n]'

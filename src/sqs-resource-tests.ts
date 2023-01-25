@@ -16,6 +16,10 @@ async function validateQueueNameIsUnique (resource: ResourceDiffRecord, allResou
     return;
   }
   logger.info(`Checking if queue name ${queueName} is unique...`);
+
+  /**
+   * Consider moving this to template checks.
+   */
   const otherQueuesWithSameName = allResources.filter((res: ResourceDiffRecord) => (
     getStandardResourceType(res.resourceType) === SQS_QUEUE &&
     res.logicalId !== resource.logicalId &&
@@ -24,7 +28,7 @@ async function validateQueueNameIsUnique (resource: ResourceDiffRecord, allResou
 
   if (otherQueuesWithSameName.length > 0) {
     throw new ConflictError(
-      'Multiple SQS queues with the same name found in template!',
+      `Multiple SQS queues with the same name ("${queueName}") found in template!`,
       'SQS queue names should be unique.',
       `Consider renaming one or more of the following resource: \n${JSON.stringify(
         [...otherQueuesWithSameName, resource].map((res: ResourceDiffRecord) => res.logicalId),

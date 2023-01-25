@@ -123,7 +123,7 @@ describe('sqs smoke tests', () => {
         expect(thrownError).not.toBeUndefined();
         expect(thrownError).toHaveProperty('name', 'CliError');
         expect(thrownError).toHaveProperty('message', 'Conflict!');
-        expect(thrownError).toHaveProperty('reason', 'Multiple SQS queues with the same name found in template!');
+        expect(thrownError).toHaveProperty('reason', 'Multiple SQS queues with the same name ("mock-queue") found in template!');
         expect(thrownError).toHaveProperty('hints', [
           'SQS queue names should be unique.',
           'Consider renaming one or more of the following resource: \n[\n  \"queue-2\",\n  \"queue-1\"\n]'

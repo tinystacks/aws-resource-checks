@@ -16,6 +16,10 @@ async function validateBucketNameIsUnique (resource: ResourceDiffRecord, allReso
     return;
   }
   logger.info(`Checking if S3 bucket name ${bucketName} is unique...`);
+
+  /**
+   * Consider moving this to template checks.
+   */
   const otherS3BucketsWithSameName = allResources.filter((res: ResourceDiffRecord) => (
     getStandardResourceType(res.resourceType) === S3_BUCKET &&
     res.logicalId !== resource.logicalId &&
@@ -24,7 +28,7 @@ async function validateBucketNameIsUnique (resource: ResourceDiffRecord, allReso
 
   if (otherS3BucketsWithSameName.length > 0) {
     throw new ConflictError(
-      'Multiple buckets with the same name found in template!',
+      `Multiple buckets with the same name ("${bucketName}") found in template!`,
       'S3 bucket names must be unique.',
       `Consider renaming one or more of the following resource: \n${JSON.stringify(
         [...otherS3BucketsWithSameName, resource].map((res: ResourceDiffRecord) => res.logicalId),
